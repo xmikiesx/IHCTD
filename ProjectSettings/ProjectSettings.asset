@@ -156,7 +156,7 @@ PlayerSettings:
     Android: com.CCOMP.ARTowerDefense
   buildNumber: {}
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 16
+  AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -384,11 +384,16 @@ PlayerSettings:
   m_BuildTargetVRSettings:
   - m_BuildTarget: Standalone
     m_Enabled: 0
+    m_Devices: []
+  - m_BuildTarget: Android
+    m_Enabled: 1
     m_Devices:
-    - Oculus
-    - OpenVR
+    - None
+    - cardboard
   m_BuildTargetEnableVuforiaSettings:
   - m_BuildTarget: Android
+    m_Enabled: 1
+  - m_BuildTarget: Standalone
     m_Enabled: 1
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
@@ -623,9 +628,9 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
-    1: CROSS_PLATFORM_INPUT
+    1: CROSS_PLATFORM_INPUT;BOLT_CLOUD
     4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT;BOLT_CLOUD
     14: MOBILE_INPUT
   platformArchitecture: {}
   scriptingBackend: {}
@@ -697,7 +702,10 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
     Collab: 1
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   luminIcon:
     m_Name: 

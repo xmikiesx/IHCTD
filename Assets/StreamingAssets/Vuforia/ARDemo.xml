@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="Goblin1" size="10.000000 10.000000" />
+    <ImageTarget name="Mortar1" size="10.000000 11.904762" />
+    <ImageTarget name="mortar" size="10.000000 11.990408" />
+    <ImageTarget name="Goblin" size="10.000000 10.000000" />
+    <ImageTarget name="Base" size="25.000000 25.000000" />
+    <ImageTarget name="spinosaurus" size="0.500000 0.812155" />
+    <ImageTarget name="tyrannosaurus" size="0.500000 0.813653" />
+    <ImageTarget name="triceratops" size="0.500000 0.811234" />
+    <ImageTarget name="diplodocus" size="0.500000 0.812731" />
+    <ImageTarget name="KEspadas" size="0.150000 0.247500" />
+  </Tracking>
+</QCARConfig>
