@@ -3,6 +3,7 @@ Tower Defense AR/VR
 Integrantes:
   Christian Flores Meléndez
   Missael Rodríguez
+  
 Introducción:
   En definición el juego presentado es un Tower Defense / Arcade que mezcla los conceptos de realidad virtual con realidad aumentada.
 Objetivo:
