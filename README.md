@@ -29,3 +29,6 @@ AR Player:
   Reparar la torre(50 de energía).
   Causar explosiones que eliminen enemigos(10 de energía).
   Crear torres defensivas (50 de energía).
+
+Link del video:
+https://www.youtube.com/watch?v=cP-pUlgsXIs&feature=youtu.be
