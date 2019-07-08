@@ -62,6 +62,7 @@ public class RobotBehaviour : Bolt.EntityBehaviour<IRobotState>
             }
         }
 
+
         state.Speed = Mathf.Clamp(speed, 0f, 2.5f);
         state.AngularSpeed = Mathf.Clamp(angularSpeed, -2f, +2f);
     }
