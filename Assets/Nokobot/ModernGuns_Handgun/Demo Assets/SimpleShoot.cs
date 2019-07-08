@@ -34,11 +34,13 @@ public class SimpleShoot : MonoBehaviour
         //  bullet = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);
         // bullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
 
-        GameObject tempFlash;
-       Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
+       GameObject tempFlash;
+       GameObject bulletObject = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);
+       bulletObject.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
        tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
        tempFlash.transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
-       // Destroy(tempFlash, 0.5f);
+       Destroy(tempFlash, 0.5f);
+       Destroy(bulletObject, 2.0f);
         //  Instantiate(casingPrefab, casingExitLocation.position, casingExitLocation.rotation).GetComponent<Rigidbody>().AddForce(casingExitLocation.right * 100f);
        
     }
@@ -50,6 +52,8 @@ public class SimpleShoot : MonoBehaviour
         casing.transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
         casing.GetComponent<Rigidbody>().AddExplosionForce(550f, (casingExitLocation.position - casingExitLocation.right * 0.3f - casingExitLocation.up * 0.6f), 1f);
         casing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(10f, 1000f)), ForceMode.Impulse);
+        Destroy(casing, 2.0f);
+
     }
 
 

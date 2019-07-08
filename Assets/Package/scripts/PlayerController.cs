@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
     public Tower tower;
     //public TurretBehaviour Turret;
     public GameObject floor;
-    public GameObject towerObject;
+    //public GameObject towerObject;
    // public GameObject turretObject;
    // public GameObject enemyObject;
     public GameObject spellPrefab;
     public float maxDistance;
 
-    public GameObject parent;
+    // public GameObject parent;
 
 
     public int waveBonusMana = 20;
@@ -121,7 +121,17 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    repairTower(true);
+                    if (hit.collider.gameObject.CompareTag("Tower"))
+                    { 
+                        repairTower(true);
+                    }
+                    else
+                    {
+                        if (hit.collider.gameObject.CompareTag("Coin"))
+                        {
+                            Destroy(hit.collider.gameObject);
+                        }
+                    }
                 }
             }
 
@@ -175,36 +185,37 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    private void launchTower()
-    {
-        Tower towerInvoke = towerObject.GetComponent<Tower>();
-        GameObject towertInvokeGo = Instantiate(towerObject, hit.point, Quaternion.identity) as GameObject;
-    }
-/*    private void launchTurret()
-    {
-        TurretBehaviour turretInvoke = turretObject.GetComponent<TurretBehaviour>();
-        GameObject turretInvokeGo = Instantiate(turretObject, hit.point, Quaternion.identity) as GameObject;
-    }*/
- /*   private void trackOthersImageTarget(bool value)
-    {
-        onInstantiate = true;
-        coroutine = waitForOthersTrackingOK();
-        StartCoroutine(coroutine);
-    }
-
-    IEnumerator waitForOthersTrackingOK()
-    {
-        while (onInstantiate)
+    /*
+        private void launchTower()
         {
-            Vector3 temp = new Vector3(vuforiaOthersHandler.transform.position.x, floor.transform.position.y, vuforiaOthersHandler.transform.position.z);
-            Debug.DrawLine(vuforiaOthersHandler.transform.position, temp, Color.red);
-            Instantiate(towerObject, temp, Quaternion.identity);
-            yield return new WaitForSeconds(4.0f);
+            Tower towerInvoke = towerObject.GetComponent<Tower>();
+            GameObject towertInvokeGo = Instantiate(towerObject, hit.point, Quaternion.identity) as GameObject;
         }
-        Debug.Log("Tenemos un imageOthersTarget activo!! ");
-        //   Debug.Log(vuforiaOthersHandler.transform.position);
+        private void launchTurret()
+        {
+            TurretBehaviour turretInvoke = turretObject.GetComponent<TurretBehaviour>();
+            GameObject turretInvokeGo = Instantiate(turretObject, hit.point, Quaternion.identity) as GameObject;
+        }*/
+    /*   private void trackOthersImageTarget(bool value)
+       {
+           onInstantiate = true;
+           coroutine = waitForOthersTrackingOK();
+           StartCoroutine(coroutine);
+       }
 
-    }*/
+       IEnumerator waitForOthersTrackingOK()
+       {
+           while (onInstantiate)
+           {
+               Vector3 temp = new Vector3(vuforiaOthersHandler.transform.position.x, floor.transform.position.y, vuforiaOthersHandler.transform.position.z);
+               Debug.DrawLine(vuforiaOthersHandler.transform.position, temp, Color.red);
+               Instantiate(towerObject, temp, Quaternion.identity);
+               yield return new WaitForSeconds(4.0f);
+           }
+           Debug.Log("Tenemos un imageOthersTarget activo!! ");
+           //   Debug.Log(vuforiaOthersHandler.transform.position);
+
+       }*/
 
     private void stopInstantiate(bool value)
     {

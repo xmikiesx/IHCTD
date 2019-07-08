@@ -5,11 +5,14 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public Tower tower;
+    public TowerBolt towerBolt;
     public MyHandler vuforiaHandler;
     public delegate void OnGameStart(bool value);
     public static event OnGameStart onGameStart;
     public delegate void OnGameReady(bool value);
     public static event OnGameReady onGameReady;
+    public delegate void OnScoreChange(int value);
+    public static event OnScoreChange onScoreChange;
     private bool gameOn;
 
 
@@ -17,28 +20,31 @@ public class GameController : MonoBehaviour
     void OnEnable()
     {
         Tower.onGameOver += endGame;
+        TowerBolt.onGameOver += endGame;
     }
     void OnDisable()
     {
         Tower.onGameOver -= endGame;
+        TowerBolt.onGameOver -= endGame;
     }
     // Start is called before the first frame update
     void Start()
     {
         trackImageTarget();
+        towerBolt = GameObject.Find("TowerBolt(Clone)").GetComponent<TowerBolt>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if(gameOn){
-            if (Input.GetKeyDown(KeyCode.R)){
+       if(gameOn){
+            /*if (Input.GetKeyDown(KeyCode.R)){
                 tower.repair();
-            }
+            }*/
             if (Input.GetKeyDown(KeyCode.O)){
-                tower.damage(-2);
+                towerBolt.damage(-2);
             }
-        }*/
+        }
     }
     void endGame(bool value)
     {
@@ -79,6 +85,7 @@ public class GameController : MonoBehaviour
         Debug.Log("El juego se ha iniciado");
         if (onGameStart != null)
         {
+            Debug.Log("El juego se ha iniciado ONGAMESTART");
             onGameStart(false);
             Debug.Log("GAMESTART desde GameController");
         }
@@ -86,6 +93,10 @@ public class GameController : MonoBehaviour
     public void reset()
     {
         Debug.Log("Reiniciaste");
+        if (onScoreChange != null)
+        {
+            onScoreChange(0);
+        }
         launchGame();
     }
 }

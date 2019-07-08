@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1206226886}
   m_Layer: 0
   m_Name: SpellDestruction
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   impact: 5
   impactParticleEffect: {fileID: 100010, guid: dd403b865080e004ba357098b172e879, type: 3}
   radiusEffect: 2
-  manaCost: 0
+  manaCost: 1
 --- !u!135 &1206226886
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -56,7 +56,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8274124910821096474}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2

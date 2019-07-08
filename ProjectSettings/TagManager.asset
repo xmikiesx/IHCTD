@@ -8,6 +8,14 @@ TagManager:
   - Floor
   - Enemy
   - Cubito
+  - Tower
+  - FxTemporaire
+  - Coin
+  - Energy
+  - Bullet
+  - EnemiesHolder
+  - EnemyTarget
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5004792027967603066}
   - component: {fileID: 5004792027967603065}
   - component: {fileID: 5004792027967603064}
-  - component: {fileID: 5004792027967603067}
+  - component: {fileID: 5880637850255990940}
   - component: {fileID: 5004792027967603079}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5004792027967603078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5004792027967603067
+--- !u!114 &5880637850255990940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,11 +88,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5004792027967603078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30c66d10f4f24ed4da21162dffdd8728, type: 3}
+  m_Script: {fileID: 11500000, guid: 001856b213aec8d49a734f8a536e65f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PosInit: {x: 0, y: 0, z: 0}
   PosEnd: {x: 0, y: 0, z: 0}
+  spellPrefab: {fileID: 100010, guid: dd403b865080e004ba357098b172e879, type: 3}
 --- !u!65 &5004792027967603079
 BoxCollider:
   m_ObjectHideFlags: 0

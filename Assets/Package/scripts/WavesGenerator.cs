@@ -4,6 +4,7 @@ using UnityEngine;
 
 [BoltGlobalBehaviour]
 public class WavesGenerator : Bolt.GlobalEventListener
+//public class WavesGenerator : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject enemyPrefab;
@@ -12,6 +13,7 @@ public class WavesGenerator : Bolt.GlobalEventListener
     public float generationFrequency;
 
     public GameObject parent;
+    private GameObject parentTest;
 
     private int currentWave = 0;
     private bool onGenerate;
@@ -25,16 +27,20 @@ public class WavesGenerator : Bolt.GlobalEventListener
     {
         GameController.onGameStart += manageWave;
         Tower.onGameOver += stop;
+        TowerBolt.onGameOver += stop;
     }
     void OnDisable()
     {
         GameController.onGameStart -= manageWave;
         Tower.onGameOver -= stop;
-
+        TowerBolt.onGameOver -= stop;
     }
+    
     void Start()
     {
-
+        GameObject[] Parent = GameObject.FindGameObjectsWithTag("EnemiesHolder");
+        Debug.Log(Parent[0]);
+        parentTest = Parent[0];
     }
 
     private void manageWave(bool value)
@@ -56,7 +62,7 @@ public class WavesGenerator : Bolt.GlobalEventListener
             if (onNewWave != null)
             {
                 onNewWave(currentWave);
-                Debug.Log("onGameStart desde GameController");
+                Debug.Log("New Wave");
             }
             yield return new WaitForSeconds(generationFrequency);
         }
@@ -66,14 +72,14 @@ public class WavesGenerator : Bolt.GlobalEventListener
     {
         for (int i = 0; i < numberPerWave; i++)
         {
+            Debug.Log("spawnPoints.Count");
             int randomIndice = Random.Range(0, spawnPoints.Count);
             Vector3 spawnPos = spawnPoints[randomIndice].position;
             spawnPos.y = 0;
             Debug.Log("Instanciando Enemy");
-            //GameObject enemy = BoltNetwork.Instantiate(BoltPrefabs.Enemy, spawnPos, Quaternion.identity);
-            
-            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity) as GameObject;
-            enemy.transform.SetParent(parent.transform);
+            GameObject enemy = BoltNetwork.Instantiate(BoltPrefabs.Enemy, spawnPos, Quaternion.identity);
+            //GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity) as GameObject;
+            //enemy.transform.SetParent(parentTest.transform);
             enemy.GetComponent<Enemy>().life = deltaSkeletonImpact;
         }
     }
@@ -81,9 +87,17 @@ public class WavesGenerator : Bolt.GlobalEventListener
     {
         StopCoroutine(coroutine);
         onGenerate = false;
-
-        foreach (Transform child in parent.transform)
+        Debug.Log("Quizas no le vasto");
+        /*if (parentTest != null)
         {
+            foreach (Transform child in parentTest.transform)
+            {
+                Enemy enemy = child.gameObject.GetComponent<Enemy>();
+                enemy.stopAttack();
+            }
+        }*/
+        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject child in Enemies) {
             Enemy enemy = child.gameObject.GetComponent<Enemy>();
             enemy.stopAttack();
         }
@@ -91,10 +105,20 @@ public class WavesGenerator : Bolt.GlobalEventListener
     private void reset()
     {
         currentWave = 0;
-        /*
-        foreach (Transform enemy in parent.transform)
+        //Debug.Log(parentTest);
+        /* if (parentTest != null)
+         {
+             foreach (Transform enemy in parentTest.transform)
+             {
+                 Destroy(enemy.gameObject);
+                 BoltNetwork.Destroy(enemy.gameObject);
+             }
+         }*/
+        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject child in Enemies)
         {
-            Destroy(enemy.gameObject);
-        }*/
+            Enemy enemy = child.gameObject.GetComponent<Enemy>();
+            BoltNetwork.Destroy(enemy.gameObject);
+        }
     }
 }

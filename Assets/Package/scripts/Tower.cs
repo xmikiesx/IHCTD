@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
-    public int life;
-    public int initialLife;
+    public float life;
+    public float initialLife;
     public TextMesh lifeIHM;
     public GameObject model3D;
     public delegate void OnGameOver(bool value);
     public static event OnGameOver onGameOver;
+    public Image healthBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +28,12 @@ public class Tower : MonoBehaviour
     public void damage(int value)
     {
         life += value;
+        healthBar.fillAmount = life / initialLife;
         if (life <= 0)
         {
             life = 0;
+            Debug.Log("Auxilioooo Me muero");
+
             if (onGameOver != null)
             {
                 onGameOver(true);

@@ -36,7 +36,6 @@ public class PlayerMovement : Bolt.EntityBehaviour<ICustomCubeState>
         {
             transform.position = transform.position + (movement.normalized * speed * BoltNetwork.FrameDeltaTime);
         }
-
     }
 
     // Start is called before the first frame update
@@ -48,7 +47,7 @@ public class PlayerMovement : Bolt.EntityBehaviour<ICustomCubeState>
     // Update is called once per frame
     void Update()
     {
-//        transform.position = this.transform.position;
-
+        transform.position = this.transform.position;
     }
+
 }
